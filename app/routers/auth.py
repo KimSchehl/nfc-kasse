@@ -74,7 +74,7 @@ async def logout(request: Request, response: Response):
 async def get_session_user(request: Request):
     session_token = request.cookies.get("session")
     if not session_token:
-        return JSONResponse(content={"username": None, "id": None})
+        return JSONResponse(content={"username": None, "id": None, "group": None})
     
     conn = sqlite3.connect("kasse.db")
     c = conn.cursor()
@@ -83,11 +83,21 @@ async def get_session_user(request: Request):
 
     if not row:
         conn.close()
-        return JSONResponse(content={"username": None, "id": None})
+        return JSONResponse(content={"username": None, "id": None, "group": None})
     
     user_id = row[0]
-    c.execute("SELECT username FROM user WHERE id=?", (user_id,))
+    # Hole Username und Gruppennamen
+    c.execute("""
+        SELECT u.username, g.name
+        FROM user u
+        JOIN user_group ug ON u.id = ug.user_id
+        JOIN "group" g ON ug.group_id = g.id
+        WHERE u.id=?
+        AND u.deleted=0 AND g.deleted=0 AND ug.deleted=0
+        LIMIT 1
+    """, (user_id,))
     user_row = c.fetchone()
     conn.close()
     username = user_row[0] if user_row else None
-    return JSONResponse(content={"username": username, "id": user_id})
+    group = user_row[1] if user_row else None
+    return JSONResponse(content={"username": username, "id": user_id, "group": group})

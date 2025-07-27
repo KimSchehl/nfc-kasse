@@ -35,6 +35,19 @@ async function ladeKategorien() {
       };
       ul.appendChild(li);
     });
+
+    // Finanzbuchhaltung-Button nur für berechtigte User
+    const sessionRes = await fetch('/api/auth/session_user');
+    const sessionData = await sessionRes.json();
+    if (sessionData.group === "Finanzbuchhaltung") {
+      const financesLi = document.createElement('li');
+      financesLi.className = 'sidebar-category';
+      financesLi.textContent = 'Finanzen';
+      financesLi.onclick = function() {
+        window.location.href = '/finances.html';
+      };
+      document.querySelector('.sidebar-list').appendChild(financesLi);
+    }
   } catch (err) {
     console.error('Fehler beim Laden der Kategorien:', err);
   }
