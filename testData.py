@@ -81,7 +81,7 @@ for username, groups in user_group_map.items():
         c.execute("INSERT INTO user_group (user_id, group_id) VALUES (?, ?)", (user_id, group_id))
 
 # --- Beispielkunde ---
-c.execute("INSERT OR IGNORE INTO customer (nfc_uid, name) VALUES (?, ?)", ("1", "Max Mustermann"))
+c.execute("INSERT OR IGNORE INTO customer (nfc_uid, balance) VALUES (?, ?)", ("1", 50.00))
 
 # --- Kategorien zu Gruppen zuordnen (dynamisch) ---
 # Stand Essen darf auf Essen zugreifen

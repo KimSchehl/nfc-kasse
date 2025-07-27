@@ -21,9 +21,12 @@ async function ladeGuthaben(nfc_uid) {
   const guthabenEl = document.getElementById('guthabenAnzeige');
   if (guthabenEl) {
     if (data.success) {
-      guthabenEl.textContent = data.balance + "€";
+      guthabenEl.textContent = Number(data.balance).toFixed(2).replace('.', ',') + "€"; // Formatiert in xx,xx€
     } else {
-      guthabenEl.textContent = "error";
+      // wenn der NFC Code nicht gefunden wurde, soll ein neuer Kunde angelegt werden
+      guthabenEl.textContent = "Neuer Kunde";  
+      document.getElementById('nfcInput').dataset.newCustomer = "true";
+      log(`NFC UID ${nfc_uid} nicht gefunden.`);
     }
   }
 }
@@ -31,6 +34,10 @@ async function ladeGuthaben(nfc_uid) {
 // --- ENTER-Event für NFC Code Feld ---
 document.getElementById('nfcInput').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') {
+    if (this.value.trim() === '') {
+      alert("Bitte NFC-Code scannen oder eingeben.");
+      return;
+    }
     ladeGuthaben(this.value);
   }
 });

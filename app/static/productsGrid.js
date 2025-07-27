@@ -220,6 +220,10 @@ window.zeigeProdukteFuerKategorie = async function(catId, catName) {
 }
 
 async function bucheWarenkorb(nfc_uid, cart) {
+  if (document.getElementById('nfcInput').dataset.newCustomer === "true") {
+    createNewCustomer(nfc_uid);
+    document.getElementById('nfcInput').dataset.newCustomer = "false";
+  }
   const productIds = cart.map(item => item.id);
   const res = await fetch('/api/transactions/book', {
     method: 'POST',
@@ -230,13 +234,23 @@ async function bucheWarenkorb(nfc_uid, cart) {
   const data = await res.json();
   if (data.success) {
     log("Buchung erfolgreich! Neues Guthaben: " + data.new_balance + "€");
-    cart.length = 0; // Warenkorb leeren
-    document.getElementById('nfcInput').value = ''; // NFC Eingabefeld leeren
-    // Guthaben neu laden
+    cart.length = 0;
+    document.getElementById('nfcInput').value = '';
     ladeGuthaben(nfc_uid);
-    zeigeWarenkorb();
+    zeigeWarenkorb(); 
   } else {
     log(data.message || "Buchung fehlgeschlagen!");
     alert("Buchung fehlgeschlagen: " + (data.message || "Unbekannter Fehler"));
   }
+}
+
+async function createNewCustomer(nfc_uid) {
+  const user = await fetch(`/api/transactions/create_customer/${nfc_uid}`, { method: "POST" });
+  const data = await user.json();
+  if (!data.success) {
+    log(data.message || "Neuer Kunde konnte nicht angelegt werden!");
+    alert("Neuer Kunde konnte nicht angelegt werden: " + (data.message || "Unbekannter Fehler"));
+    return;
+  }
+  log(`Neuer Kunde angelegt: ${data.name} mit NFC UID ${data.nfc_uid}`);
 }

@@ -54,6 +54,7 @@ async def book_transaction(request: Request):
     finally:
         conn.close()
 
+
 @router.get("/balance/{nfc_uid}")
 async def get_balance(nfc_uid: str):
     conn = sqlite3.connect("kasse.db")
@@ -64,6 +65,7 @@ async def get_balance(nfc_uid: str):
     if row:
         return {"success": True, "balance": row[0]}
     return {"success": False, "message": "Kunde nicht gefunden."}
+
 
 @router.post("/payout")
 async def payout_balance(request: Request):
@@ -77,4 +79,22 @@ async def payout_balance(request: Request):
     conn.commit()
     conn.close()
     return {"success": True}
+
+
+@router.post("/create_customer/{nfc_uid}")
+async def create_customer(nfc_uid: str):
+    conn = sqlite3.connect("kasse.db")
+    c = conn.cursor()
+    try:
+        c.execute("SELECT id FROM customer WHERE nfc_uid=?", (nfc_uid,))
+        if c.fetchone():
+            conn.close()
+            return {"success": False, "message": "Kunde existiert bereits."}
+        c.execute("INSERT INTO customer (nfc_uid) VALUES (?)", (nfc_uid,))
+        conn.commit()
+        return {"success": True, "message": "Kunde angelegt.", "nfc_uid": nfc_uid}
+    except Exception as e:
+        return {"success": False, "message": f"Unbekannter Fehler bei {nfc_uid}: {e}"}
+    finally:
+        conn.close()
 
