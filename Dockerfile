@@ -17,4 +17,4 @@ RUN if [ "$DEFAULT_DATA" = "yes" ] || [ "$DEFAULT_DATA" = "y" ]; then python tes
 
 EXPOSE 5000
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5000", "--reload"]
