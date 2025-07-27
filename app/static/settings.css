@@ -1,0 +1,78 @@
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f8fafd;
+  margin: 0;
+  padding: 0;
+}
+
+h2, h3 {
+  color: #1976d2;
+  margin-bottom: 16px;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+input, button {
+  font-size: 1em;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  margin-bottom: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+th, td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+th {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.2);
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.user-table th, .user-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.user-table th {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.user-table tr:last-child td {
+  border-bottom: none;
+}

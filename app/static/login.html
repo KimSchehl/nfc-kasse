@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="/sidebar.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #222;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-box {
+      max-width: 340px;
+      margin: 80px auto;
+      background: #fff;
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .login-box h2 {
+      margin-top: 0;
+      margin-bottom: 24px;
+      text-align: center;
+      font-weight: normal;
+    }
+    .login-box label {
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+    .login-box input[type="text"],
+    .login-box input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+    .login-box button {
+      padding: 12px;
+      background: #1976d2;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: background 0.2s;
+    }
+    .login-box button:hover {
+      background: #125ea8;
+    }
+    .login-error {
+      color: #f44336;
+      margin-bottom: 12px;
+      text-align: center;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login</h2>
+    <div id="loginError" class="login-error" style="display:none;"></div>
+    <input type="text" id="username" placeholder="Benutzername" autocomplete="username" required autofocus />
+    <input type="password" id="password" placeholder="Passwort" autocomplete="current-password" required />
+    <button id="loginBtn">Login</button>
+  </div>
+  <script src="/log.js"></script>
+  <script>
+    document.getElementById('loginBtn').onclick = async function() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const errorBox = document.getElementById('loginError');
+      errorBox.style.display = "none";
+      errorBox.textContent = '';
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({username, password})
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          localStorage.setItem('username', username); // optional für spätere Nutzung
+          window.location.href = '/index.html';
+        } else {
+          errorBox.textContent = data.message || "Anmeldung fehlgeschlagen.";
+          errorBox.style.display = "block";
+        }
+      } catch (err) {
+        errorBox.textContent = "Serverfehler. Bitte versuchen Sie es später erneut.";
+        errorBox.style.display = "block";
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+#nfcScanArea {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 10px 18px 10px 18px;
+  margin: 10px auto 10px auto; /* margin: oben rechts unten links */
+  max-width: 400px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#nfcScanArea h2 {
+  margin-top: 0;
+  font-size: 1.3em;
+  color: #1976d2;
+}
+#nfcScanBtn {
+  font-size: 1.1em;
+  padding: 5px 5px;
+  margin: 5px 10px 5px 10px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: center;
+}
+#nfcScanBtn:hover {
+  background: #125ea8;
+}
+#nfcInput {
+  font-size: 1.1em;
+  padding: 0.7em;
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #f4f4f4;
+}

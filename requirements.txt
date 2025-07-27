@@ -1,0 +1,11 @@
+fastapi
+fastapi.responses
+fastapi.middleware.cors
+fastapi.staticfiles
+uvicorn[standard]
+jinja2
+python-multipart
+requests
+secrets
+sqlite3
+pydantic

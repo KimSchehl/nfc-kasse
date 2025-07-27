@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NFC Kassensystem</title>
+  <link rel="stylesheet" href="/sidebar.css">
+  <link rel="stylesheet" href="/productsGrid.css">
+  <link rel="stylesheet" href="/nfc.css">
+  <link rel="stylesheet" href="/cartBox.css"></link>
+</head>
+<body>
+<!--Burger Menu-->
+  <button class="burger-btn" id="burgerBtn" aria-label="Menü öffnen">
+    <span class="burger-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+<!--Sidebar-->  
+  <nav class="sidebar" id="sidebar">
+    <span class="sidebar-title" id="sidebarUser">Menü</span>
+    <div class="sidebar-divider"></div>
+    <ul class="sidebar-list">
+      <li class="sidebar-category" id="essenBtn">Essen</li>
+    </ul>
+    <div class="sidebar-divider"></div>
+    <div class="settings-container">
+      <button class="settings-btn" id="settingsBtn" onclick="window.location.href='/settings.html'">
+        ⚙️ Einstellungen
+      </button>
+    </div>
+    <div class="sidebar-divider"></div>
+    <div class="logout-container">
+      <button class="logout-btn" id="logoutBtn">🚪 Logout</button>
+    </div>
+  </nav>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+<!--NFC Scan Area-->
+  <div style="margin: 10px auto 0 auto; display: flex; align-items: flex-start; gap: 30px; justify-content: center; max-width: 480px;">
+    <div style="display: flex; flex-direction: column;">
+      <label for="nfcInput" style="font-weight: bold; margin-bottom: 4px;">Code:</label>
+      <input type="text" id="nfcInput" style="width:100px; font-size:1.1em; padding: 6px 12px; border-radius: 6px; border: 1px solid #bbb; background: #f8fafd;">
+    </div>
+    <div style="display: flex; flex-direction: column;">
+      <label for="guthabenAnzeige" style="font-weight: bold; margin-bottom: 4px;">Guthaben:</label>
+      <span id="guthabenAnzeige" style="width:80px; font-size:1.1em; padding: 6px 12px; border-radius: 6px; border: 1px solid #bbb; background: #f8fafd; display: inline-block;">0,00€</span>
+    </div>
+  </div>
+
+  <div id="mainContent"></div>
+  <script src="/sidebar.js"></script>
+  <script src="/productsGrid.js"></script>
+  <script src="/nfc.js"></script>
+  <script src="/log.js"></script>
+  <script>
+     // Logout
+    function logout() {
+      fetch('/api/auth/logout', {method: 'POST'})
+      .then(() => window.location.href = "/login.html");
+    }
+
+    // Session check
+    fetch('/api/auth/check_session')
+      .then(res => res.json())
+      .then(data => {
+        if (!data.logged_in) window.location.href = '/login.html';
+      });
+
+    // Nach dem Laden des Users:
+    fetch('/api/auth/session_user')
+      .then(res => res.json())
+      .then(data => {
+        if (data.username) {
+          document.getElementById('sidebarUser').textContent = data.username;
+          window.currentUser = { username: data.username, id: data.id }; // id ggf. mitliefern!
+        }
+      });
+  </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+#cartBox {
+  height: 18vh;
+  overflow-y: auto;
+  width: 100%;
+  max-width: calc(100vw - 32px);
+  margin: 0 auto 16px auto;     
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 12px;
+}
+
+#cartBox .cart-item {
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+#cartBox .cart-empty {
+  color: #888;
+}
+
+.cart-btn-row {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  max-width: calc(100vw - 32px);
+  margin: 12px auto 0 auto;
+}
+
+.cart-btn-row button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.7em 1.4em;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.cart-btn-row .confirm-btn {
+  background: #388e3c;
+  color: #fff;
+}
+
+.cart-btn-row .cancel-btn {
+  background: #f44336;
+  color: #fff;
+}
+
+.nfc-btn {
+  height: 40px;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  border-radius: 6px;
+  background: #1976d2;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: auto !important; /* Schiebt den Button nach links */
+}
+
+.cart-sum-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1.15em;
+  font-weight: bold;
+  margin: 0 auto 12px auto;
+  color: #1976d2;
+  text-align: right;
+  max-width: 380px;
+}

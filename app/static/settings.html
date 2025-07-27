@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Einstellungen</title>
+  <script src="/settings.js"></script>
+  <link rel="stylesheet" href="/settings.css">
+</head>
+<body>
+  <script src="/log.js"></script>
+  <button id="backBtn" style="position: absolute; top: 18px; left: 18px; padding: 8px 16px; border-radius: 6px; border: none; background: #e3f2fd; color: #1976d2; font-size: 1em; cursor: pointer;">
+    ← Zurück
+  </button>
+  <h2 style="margin-top: 70px;">Einstellungen</h2>
+  <label for="columnInput">Spaltenanzahl für Produktanzeige:</label>
+  <input type="number" id="columnInput" min="1" max="10" />
+  <button id="saveBtn">Speichern</button>
+  <span id="saveInfo"></span>
+  <div> </div>
+  <h3 id="userManagementHeader" style="margin-top:40px; display:inline-block;">Benutzerverwaltung</h3>
+  <button id="createUserBtn" style="margin-left:16px; padding:6px 16px; border-radius:6px; background:#388e3c; color:#fff; border:none; font-size:1em; cursor:pointer;">Benutzer anlegen</button>
+  <div id="userTableContainer"></div>
+
+  <!-- Popup für User-Bearbeitung -->
+  <div id="editUserPopup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; border-radius:10px; box-shadow:0 2px 16px rgba(0,0,0,0.15); padding:32px 24px; z-index:1000; min-width:320px;">
+    <h3>User bearbeiten</h3>
+    <label for="editUsername">Username:</label>
+    <input type="text" id="editUsername" style="width:100%; margin-bottom:12px;" />
+    <label for="editPassword">Passwort:</label>
+    <input type="text" id="editPassword" style="width:100%; margin-bottom:24px;" />
+    <div style="display:flex; justify-content:flex-end; gap:12px;">
+      <button id="deleteUserBtn" style="padding:8px 18px; border-radius:6px; background:#f44336; color:#fff; border:none; font-size:1em; cursor:pointer;">User Löschen</button>
+      <button id="cancelEditBtn" style="padding:8px 18px; border-radius:6px; background:#eee; color:#1976d2; border:none; font-size:1em; cursor:pointer;">Abbrechen</button>
+      <button id="saveEditBtn" style="padding:8px 18px; border-radius:6px; background:#1976d2; color:#fff; border:none; font-size:1em; cursor:pointer;">Speichern</button>
+    </div>
+  </div>
+  <div id="editUserOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.18); z-index:999;"></div>
+
+  <script src="/settings.js"></script>
+</body>
+</html>
