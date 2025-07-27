@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# SQLite DBs
+*.db
+*.sqlite3
+
+# Virtuelle Umgebungen
+venv/
+venv-kasse/
+.env/
+
+# VS Code
+.vscode/
+
+# Sonstiges
+.DS_Store
