@@ -1,6 +1,5 @@
 fastapi
 fastapi.responses
-fastapi.middleware.cors
 fastapi.staticfiles
 uvicorn[standard]
 jinja2
