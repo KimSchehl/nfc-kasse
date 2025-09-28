@@ -17,3 +17,6 @@ venv-kasse/
 
 # Sonstiges
 .DS_Store
+
+# Backup files
+*.backup
