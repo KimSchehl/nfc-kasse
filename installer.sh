@@ -64,7 +64,7 @@ server {
 }
 EOL
     sudo ln -sf $NGINX_CONF /etc/nginx/sites-enabled/
-    sudo nginx -t && sudo systemctl restart nginx
+sudo nginx -t && sudo systemctl restart nginx
 
     # 6. Let's Encrypt Zertifikat holen
     echo "Requesting Let's Encrypt certificate for $DOMAIN..."
@@ -85,31 +85,49 @@ EOL
 elif [ "$installMode" = "dev" ]; then
     echo "Starting native development installation..."
     
-    # 1. Python3 und pip installieren (falls nicht vorhanden)
+    # 1. Python3 installieren (falls nicht vorhanden)
     if ! command -v python3 &> /dev/null; then
         echo "Installing Python3..."
         sudo apt-get update
-        sudo apt-get install -y python3 python3-pip python3-venv
+        sudo apt-get install -y python3
     else
         echo "Python3 is already installed."
     fi
 
-    # 2. Virtual Environment erstellen
+    # 2. python3-pip installieren (falls nicht vorhanden)
+    if ! command -v pip3 &> /dev/null; then
+        echo "Installing python3-pip..."
+        sudo apt-get update
+        sudo apt-get install -y python3-pip
+    else
+        echo "python3-pip is already installed."
+    fi
+
+    # 3. python3-venv installieren (falls nicht vorhanden)
+    if ! python3 -m venv --help > /dev/null 2>&1; then
+        echo "Installing python3-venv..."
+        sudo apt-get update
+        sudo apt-get install -y python3-venv
+    else
+        echo "python3-venv is already installed."
+    fi
+
+    # 4. Virtual Environment erstellen
     echo "Creating virtual environment..."
     if [ ! -d "venv" ]; then
         python3 -m venv venv
     fi
     source venv/bin/activate
 
-    # 3. Dependencies installieren
+    # 5. Dependencies installieren
     echo "Installing Python dependencies..."
     pip install --no-cache-dir -r requirements.txt
 
-    # 4. Datenbank initialisieren
+    # 6. Datenbank initialisieren
     echo "Initializing database..."
     python init_db.py
 
-    # 5. Test-Daten hinzufügen (falls gewünscht)
+    # 7. Test-Daten hinzufügen (falls gewünscht)
     if [ "$TestData" = "y" ]; then
         echo "Adding test data..."
         python testData.py
@@ -117,10 +135,10 @@ elif [ "$installMode" = "dev" ]; then
         echo "Skipping test data installation."
     fi
 
-    # 6. Permissions für Datenbank setzen
+    # 8. Permissions für Datenbank setzen
     chmod 664 kasse.db 2>/dev/null || true
 
-    # 7. IP-Adresse ermitteln
+    # 9. IP-Adresse ermitteln
     IP=$(hostname -I | awk '{print $1}')
 
     echo ""
