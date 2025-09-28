@@ -154,3 +154,16 @@
 [2025-07-27 21:31:16] {2 bonkasse_1} Frontend: 100€ added to cart.
 [2025-07-27 21:31:18] {2 bonkasse_1} Frontend: Booking transaction for NFC UID: 1 with products: 34
 [2025-07-27 21:31:18] {2 bonkasse_1} Frontend: Buchung erfolgreich! Neues Guthaben: 100€
+[2025-07-30 20:55:59] {4 bar_1} Frontend: switched category: 3 (Bar)
+[2025-07-30 20:56:26] {1 admin} Frontend: switched category: 1 (Essen)
+[2025-07-30 20:56:52] {1 admin} Frontend: switched category: 1 (Essen)
+[2025-07-30 20:56:54] {1 admin} Frontend: switched category: 2 (Getränke)
+[2025-07-30 20:57:18] {1 admin} Frontend: Bier 0,5L added to cart.
+[2025-07-30 20:57:18] {1 admin} Frontend: Bier 0,5L added to cart.
+[2025-07-30 20:57:19] {1 admin} Frontend: - Glas Pfand added to cart.
+[2025-07-30 20:59:37] {2 bonkasse_1} Frontend: switched category: 4 (BonKasse)
+[2025-07-30 21:00:19] {2 bonkasse_1} Frontend: 100€ added to cart.
+[2025-07-30 21:00:20] {2 bonkasse_1} Frontend: Booking transaction for NFC UID: d4:94:6a:22 with products: 34
+[2025-07-30 21:00:20] {2 bonkasse_1} Frontend: Kunde nicht gefunden.
+[2025-07-30 21:00:33] {2 bonkasse_1} Frontend: Booking transaction for NFC UID: d4:94:6a:22 with products: 34
+[2025-07-30 21:00:33] {2 bonkasse_1} Frontend: Kunde nicht gefunden.
