@@ -22,6 +22,7 @@ async function ladeGuthaben(nfc_uid) {
   if (guthabenEl) {
     if (data.success) {
       guthabenEl.textContent = data.balance + "€";
+      log(`Guthaben für NFC UID ${nfc_uid}: ${data.balance}€`);
     } else {
       guthabenEl.textContent = "error";
     }

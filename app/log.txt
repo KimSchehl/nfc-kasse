@@ -1,0 +1,71 @@
+[2025-09-28 16:41:33] {1 admin} Frontend: switched category: 1 (Essen)
+[2025-09-28 16:42:53] {1 admin} Frontend: switched category: 4 (BonKasse)
+[2025-09-28 16:42:57] {1 admin} Frontend: 100€ added to cart.
+[2025-09-28 16:42:58] {1 admin} Frontend: Booking transaction for NFC UID: d3:75:cd:39 with products: 34
+[2025-09-28 16:42:58] {1 admin} Frontend: Kunde nicht gefunden.
+[2025-09-28 16:43:08] {1 admin} Frontend: Booking transaction for NFC UID: d3:75:cd:39 with products: 34
+[2025-09-28 16:43:08] {1 admin} Frontend: Kunde nicht gefunden.
+[2025-09-28 16:51:42] {1 admin} Frontend: Booking transaction for NFC UID: d3:75:cd:39 with products: 34
+[2025-09-28 16:51:42] {1 admin} Frontend: Kunde nicht gefunden.
+[2025-09-28 17:04:40] {1 admin} Frontend: switched category: 4 (BonKasse)
+[2025-09-28 17:04:44] {1 admin} Frontend: switched category: 4 (BonKasse)
+[2025-09-28 17:05:13] {1 admin} Frontend: 5€ added to cart.
+[2025-09-28 17:05:14] {1 admin} Frontend: Booking transaction for NFC UID: d3:75:cd:39 with products: 30
+[2025-09-28 17:05:14] {1 admin} Frontend: Kunde nicht gefunden.
+[2025-09-28 17:05:17] {1 admin} Frontend: Booking transaction for NFC UID: d3:75:cd:39 with products: 30
+[2025-09-28 17:05:17] {1 admin} Frontend: Kunde nicht gefunden.
+[2025-09-28 17:06:01] {1 admin} Frontend: switched category: 4 (BonKasse)
+[2025-09-28 17:06:22] {1 admin} Frontend: 50€ added to cart.
+[2025-09-28 17:06:23] {1 admin} Frontend: Booking transaction for NFC UID: d3:75:cd:39 with products: 33
+[2025-09-28 17:06:23] {1 admin} Frontend: Buchung erfolgreich! Neues Guthaben: 50€
+[2025-09-28 17:06:42] {1 admin} Frontend: switched category: 1 (Essen)
+[2025-09-28 17:06:50] {1 admin} Frontend: switched category: 1 (Essen)
+[2025-09-28 19:00:57] {1 admin} Frontend: switched category: 1 (Essen)
+[2025-09-28 19:03:35] {1 admin} Frontend: Guthaben für NFC UID 1: 0€
+[2025-09-28 19:03:49] {1 admin} Frontend: switched category: 4 (BonKasse)
+[2025-09-28 19:03:53] {1 admin} Frontend: 100€ added to cart.
+[2025-09-28 19:07:27] {1 admin} Frontend: Booking transaction for NFC UID: 1 with products: 34
+[2025-09-28 19:07:27] {1 admin} Frontend: Buchung erfolgreich! Neues Guthaben: 100€
+[2025-09-28 19:07:27] {1 admin} Frontend: Guthaben für NFC UID 1: 100€
+[2025-09-28 19:07:42] {1 admin} Frontend: Guthaben für NFC UID 1: 100€
+[2025-09-28 19:07:45] {1 admin} Frontend: 5€ added to cart.
+[2025-09-28 19:07:45] {1 admin} Frontend: 5€ added to cart.
+[2025-09-28 19:07:45] {1 admin} Frontend: 5€ added to cart.
+[2025-09-28 19:07:46] {1 admin} Frontend: 5€ added to cart.
+[2025-09-28 19:07:51] {1 admin} Frontend: 5€ removed from cart.
+[2025-09-28 19:07:52] {1 admin} Frontend: 5€ removed from cart.
+[2025-09-28 19:07:55] {1 admin} Frontend: Booking transaction for NFC UID: 1 with products: 30,30
+[2025-09-28 19:07:55] {1 admin} Frontend: Buchung erfolgreich! Neues Guthaben: 110€
+[2025-09-28 19:07:55] {1 admin} Frontend: Guthaben für NFC UID 1: 110€
+[2025-09-28 19:08:53] {1 admin} Frontend: switched category: 1 (Essen)
+[2025-09-28 19:09:22] {1 admin} Frontend: switched category: 2 (Getränke)
+[2025-09-28 19:09:39] {1 admin} Frontend: Guthaben für NFC UID 1: 110€
+[2025-09-28 19:09:43] {1 admin} Frontend: Bier 0,5L added to cart.
+[2025-09-28 19:09:46] {1 admin} Frontend: + Glas Pfand added to cart.
+[2025-09-28 19:10:01] {1 admin} Frontend: Bier 0,5L added to cart.
+[2025-09-28 19:10:10] {1 admin} Frontend: + Glas Pfand added to cart.
+[2025-09-28 19:10:12] {1 admin} Frontend: - Glas Pfand added to cart.
+[2025-09-28 19:10:20] {1 admin} Frontend: Bier 0,5L removed from cart.
+[2025-09-28 19:10:20] {1 admin} Frontend: + Glas Pfand removed from cart.
+[2025-09-28 19:10:20] {1 admin} Frontend: Bier 0,5L removed from cart.
+[2025-09-28 19:10:20] {1 admin} Frontend: + Glas Pfand removed from cart.
+[2025-09-28 19:10:20] {1 admin} Frontend: - Glas Pfand removed from cart.
+[2025-09-28 19:10:23] {1 admin} Frontend: - Glas Pfand added to cart.
+[2025-09-28 19:10:24] {1 admin} Frontend: - Glas Pfand added to cart.
+[2025-09-28 19:10:24] {1 admin} Frontend: - Glas Pfand added to cart.
+[2025-09-28 19:10:26] {1 admin} Frontend: + Glas Pfand added to cart.
+[2025-09-28 19:10:27] {1 admin} Frontend: Bier 0,5L added to cart.
+[2025-09-28 19:10:31] {1 admin} Frontend: Booking transaction for NFC UID: 1 with products: 9,9,9,6,1
+[2025-09-28 19:10:31] {1 admin} Frontend: Buchung erfolgreich! Neues Guthaben: 112€
+[2025-09-28 19:10:31] {1 admin} Frontend: Guthaben für NFC UID 1: 112€
+[2025-09-28 19:10:40] {1 admin} Frontend: Bier 0,5L added to cart.
+[2025-09-28 19:10:40] {1 admin} Frontend: Bier 0,5L added to cart.
+[2025-09-28 19:10:40] {1 admin} Frontend: Bier 0,5L added to cart.
+[2025-09-28 19:10:48] {1 admin} Frontend: Guthaben für NFC UID 1: 112€
+[2025-09-28 19:10:50] {1 admin} Frontend: Booking transaction for NFC UID: 1 with products: 1,1,1
+[2025-09-28 19:10:50] {1 admin} Frontend: Buchung erfolgreich! Neues Guthaben: 100€
+[2025-09-28 19:10:50] {1 admin} Frontend: Guthaben für NFC UID 1: 100€
+[2025-09-28 19:10:59] {1 admin} Frontend: switched category: 1 (Essen)
+[2025-09-28 19:12:45] {2 bonkasse_1} Frontend: switched category: 4 (BonKasse)
+[2025-09-28 19:12:51] Frontend: User 2 Kategorie Essen geändert: true | Serverantwort: {"success":true}
+[2025-09-28 19:13:13] {2 bonkasse_1} Frontend: switched category: 1 (Essen)

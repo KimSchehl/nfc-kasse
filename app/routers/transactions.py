@@ -22,8 +22,12 @@ async def book_transaction(request: Request):
         c.execute("SELECT id, balance FROM customer WHERE nfc_uid=?", (nfc_uid,))
         row = c.fetchone()
         if not row:
-            return JSONResponse({"success": False, "message": "Kunde nicht gefunden."}, status_code=404)
-        customer_id, balance = row
+            # Neuen Kunden anlegen
+            c.execute("INSERT INTO customer (nfc_uid, balance) VALUES (?, ?)", (nfc_uid, 0))
+            customer_id = c.lastrowid
+            balance = 0
+        else:
+            customer_id, balance = row
 
         # Produkte und Gesamtpreis berechnen
         prices = []
