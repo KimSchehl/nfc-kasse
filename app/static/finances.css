@@ -1,0 +1,19 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f8fafd;
+  margin: 0;
+  padding: 0;
+}
+h2 {
+  color: #1976d2;
+  margin-top: 40px;
+  text-align: center;
+}
+#financesTableContainer {
+  margin: 30px auto;
+  max-width: 900px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 24px;
+}

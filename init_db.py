@@ -45,7 +45,6 @@ c.execute("""
 CREATE TABLE customer (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nfc_uid TEXT NOT NULL UNIQUE,
-    name TEXT,
     balance REAL NOT NULL DEFAULT 0
 )
 """)

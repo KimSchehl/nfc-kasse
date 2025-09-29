@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import auth, static_redirects, categories, products, settings, transactions, user, log
+from app.routers import auth, static_redirects, categories, products, settings, transactions, user, log, finances
 from fastapi.responses import RedirectResponse
 
 
@@ -22,6 +22,7 @@ app.include_router(settings.router, prefix="/api")
 app.include_router(transactions.router, prefix="/api")
 app.include_router(user.router, prefix="/api")
 app.include_router(log.router, prefix="/api")
+app.include_router(finances.router, prefix="/api")
 
 app.mount("/", StaticFiles(directory="app/static", html=True), name="static")
 
