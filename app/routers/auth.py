@@ -86,18 +86,30 @@ async def get_session_user(request: Request):
         return JSONResponse(content={"username": None, "id": None, "group": None})
     
     user_id = row[0]
-    # Hole Username und Gruppennamen
+    # Hole Username und alle Gruppennamen
     c.execute("""
-        SELECT u.username, g.name
+        SELECT u.username, g.id, g.name
         FROM user u
         JOIN user_group ug ON u.id = ug.user_id
         JOIN "group" g ON ug.group_id = g.id
         WHERE u.id=?
         AND u.deleted=0 AND g.deleted=0 AND ug.deleted=0
-        LIMIT 1
     """, (user_id,))
-    user_row = c.fetchone()
+    rows = c.fetchall()
+    if not rows:
+        conn.close()
+        return JSONResponse(content={"username": None, "id": None, "groups": [], "categories": []})
+    username = rows[0][0]
+    group_ids = [row[1] for row in rows]
+    groups = [row[2] for row in rows]
+    # Hole alle Kategorien, auf die der User Zugriff hat (über Gruppen)
+    c.execute(f"""
+        SELECT DISTINCT c.display_name
+        FROM category c
+        JOIN category_group cg ON c.id = cg.category_id
+        WHERE cg.group_id IN ({','.join(['?']*len(group_ids))}) AND c.deleted=0 AND cg.deleted=0
+    """, group_ids)
+    cat_rows = c.fetchall()
     conn.close()
-    username = user_row[0] if user_row else None
-    group = user_row[1] if user_row else None
-    return JSONResponse(content={"username": username, "id": user_id, "group": group})
+    categories = [row[0] for row in cat_rows]
+    return JSONResponse(content={"username": username, "id": user_id, "groups": groups, "categories": categories})

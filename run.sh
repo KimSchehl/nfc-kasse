@@ -8,6 +8,12 @@ if [ -d "venv" ]; then
     source venv/bin/activate
 fi
 
+
+# Show the local IP address where the Kassensystem is reachable
+IP=$(hostname -I | awk '{print $1}')
+echo "Kassensystem erreichbar unter: https://$IP:5000"
+
 # Start the application via HTTPS (self-signed certificate)
 uvicorn app.main:app --host 0.0.0.0 --port 5000 --reload \
   --ssl-keyfile certs/localhost.key --ssl-certfile certs/localhost.crt
+

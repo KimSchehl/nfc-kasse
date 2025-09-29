@@ -167,3 +167,6 @@
 [2025-07-30 21:00:20] {2 bonkasse_1} Frontend: Kunde nicht gefunden.
 [2025-07-30 21:00:33] {2 bonkasse_1} Frontend: Booking transaction for NFC UID: d4:94:6a:22 with products: 34
 [2025-07-30 21:00:33] {2 bonkasse_1} Frontend: Kunde nicht gefunden.
+[2025-09-29 20:33:59] {1 admin} Frontend: switched category: 2 (Getränke)
+[2025-09-29 20:34:01] {1 admin} Frontend: switched category: 4 (BonKasse)
+[2025-09-29 20:34:02] {1 admin} Frontend: switched category: 1 (Essen)

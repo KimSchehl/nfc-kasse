@@ -69,7 +69,7 @@
         if (!data.logged_in) window.location.href = '/login.html';
       });
 
-    // Nach dem Laden des Users:
+    // View Username:
     fetch('/api/auth/session_user')
       .then(res => res.json())
       .then(data => {

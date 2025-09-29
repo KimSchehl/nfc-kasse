@@ -22,8 +22,9 @@ async def get_all_user():
     user_list = []
     for user in users:
         # Get all groups of the user
-        groups = conn.execute("SELECT group_id FROM user_group WHERE user_id = ? AND deleted = 0", (user["id"],)).fetchall()
-        group_ids = [g["group_id"] for g in groups]
+        groups = conn.execute("SELECT g.name, g.id FROM user_group ug JOIN 'group' g ON ug.group_id = g.id WHERE ug.user_id = ? AND ug.deleted = 0 AND g.deleted = 0", (user["id"],)).fetchall()
+        group_ids = [g["id"] for g in groups]
+        group_names = [g["name"] for g in groups]
         # Get all categories belonging to these groups
         cat_ids = set()
         for gid in group_ids:
@@ -35,7 +36,8 @@ async def get_all_user():
             "id": user["id"],
             "username": user["username"],
             "password": user["password"],
-            "categories": user_categories
+            "categories": user_categories,
+            "groups": group_names
         })
     conn.close()
     return JSONResponse(content=user_list)

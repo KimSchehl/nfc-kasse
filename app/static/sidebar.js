@@ -14,32 +14,30 @@ document.querySelector('.sidebar-category').onclick = function() {
 
 async function ladeKategorien() {
   try {
-    const res = await fetch('/api/categories/', { credentials: 'include' });
-    const kategorien = await res.json();
-
+    // Hole Session-User-Daten (enthält jetzt auch categories und groups)
+    const sessionRes = await fetch('/api/auth/session_user');
+    const sessionData = await sessionRes.json();
     const ul = document.querySelector('.sidebar-list');
     ul.innerHTML = '';
 
-    kategorien.forEach(cat => {
-      const li = document.createElement('li');
-      li.className = 'sidebar-category';
-      li.textContent = cat.display_name;
-      li.dataset.catId = cat.id;
-      li.onclick = function() {
-        const catId = this.dataset.catId;
-        const catName = this.textContent;  
-        log(`switched category: ${catId} (${catName})`);
-        window.zeigeProdukteFuerKategorie(catId, catName);
-        document.getElementById('sidebar').classList.remove('open');
-        document.getElementById('sidebarOverlay').style.display = 'none';
-      };
-      ul.appendChild(li);
-    });
+    // Kategorien aus session_user (Zugriffsrechte)
+    if (Array.isArray(sessionData.categories)) {
+      sessionData.categories.forEach(catName => {
+        const li = document.createElement('li');
+        li.className = 'sidebar-category';
+        li.textContent = catName;
+        li.onclick = function() {
+          log(`switched category: ${catName}`);
+          window.zeigeProdukteFuerKategorie && window.zeigeProdukteFuerKategorie(null, catName);
+          document.getElementById('sidebar').classList.remove('open');
+          document.getElementById('sidebarOverlay').style.display = 'none';
+        };
+        ul.appendChild(li);
+      });
+    }
 
-    // Finanzbuchhaltung-Button nur für berechtigte User
-    const sessionRes = await fetch('/api/auth/session_user');
-    const sessionData = await sessionRes.json();
-    if (sessionData.group === "Finanzbuchhaltung") {
+    // Finanzbuchhaltung-Button für alle User mit entsprechender Gruppe
+    if (Array.isArray(sessionData.groups) && sessionData.groups.includes("Finanzbuchhaltung")) {
       const financesLi = document.createElement('li');
       financesLi.className = 'sidebar-category';
       financesLi.textContent = 'Finanzen';

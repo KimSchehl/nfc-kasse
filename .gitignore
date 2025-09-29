@@ -20,3 +20,8 @@ venv-kasse/
 
 # Backup files
 *.backup
+
+# Logs
+logs/
+*.log
+log.txt

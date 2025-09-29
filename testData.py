@@ -60,7 +60,7 @@ for username, password in users:
 
 # --- User zu Gruppen zuordnen ---
 user_group_map = {
-    "admin": [admin_group_id],
+    "admin": [admin_group_id, fibu_group_id],
     "bonkasse_1": [bonkasse_group_id],
     "bonkasse_2": [bonkasse_group_id],
     "bar_1": [bar_group_id],
