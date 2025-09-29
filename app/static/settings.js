@@ -29,10 +29,19 @@ async function ladeUserTabelle() {
   const users = await res.json();
   const catRes = await fetch('/api/categories/', { credentials: 'include' });
   const categories = await catRes.json();
+  // Hole alle Gruppen dynamisch
+  let groupList = [];
+  try {
+    const groupRes = await fetch('/api/user/groups/', { credentials: 'include' });
+    groupList = await groupRes.json();
+  } catch {
+    groupList = [];
+  }
 
   let html = '<table class="user-table">';
   html += '<tr><th>Aktion</th><th>ID</th><th>Username</th><th>Passwort</th>';
   categories.forEach(cat => html += `<th>${cat.display_name}</th>`);
+  groupList.forEach(gr => html += `<th>${gr}</th>`);
   html += '</tr>';
 
   users.forEach(user => {
@@ -49,6 +58,14 @@ async function ladeUserTabelle() {
           ${user.categories.includes(cat.display_name) ? 'checked' : ''}
           data-userid="${user.id}"
           data-category="${cat.display_name}">
+      </td>`;
+    });
+    groupList.forEach(gr => {
+      html += `<td>
+        <input type="checkbox"
+          ${user.groups.includes(gr) ? 'checked' : ''}
+          data-userid="${user.id}"
+          data-group="${gr}">
       </td>`;
     });
     html += '</tr>';
@@ -94,14 +111,25 @@ document.getElementById('userTableContainer').addEventListener('change', async f
   if (e.target && e.target.type === 'checkbox') {
     const userId = e.target.getAttribute('data-userid');
     const category = e.target.getAttribute('data-category');
+    const group = e.target.getAttribute('data-group');
     const allowed = e.target.checked;
-    const res = await fetch('/api/user/update_permission/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user_id: userId, category: category, allowed: allowed })
-    });
-    const result = await res.json();
-    logFrontend(`User ${userId} Kategorie ${category} geändert: ${allowed} | Serverantwort: ${JSON.stringify(result)}`);
+    if (category) {
+      const res = await fetch('/api/user/update_category_permission/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: userId, category: category, allowed: allowed })
+      });
+      const result = await res.json();
+      logFrontend(`User ${userId} Kategorie ${category} geändert: ${allowed} | Serverantwort: ${JSON.stringify(result)}`);
+    } else if (group) {
+      const res = await fetch('/api/user/update_group_permission/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: userId, group: group, allowed: allowed })
+      });
+      const result = await res.json();
+      logFrontend(`User ${userId} Gruppe ${group} geändert: ${allowed} | Serverantwort: ${JSON.stringify(result)}`);
+    }
   }
 });
 

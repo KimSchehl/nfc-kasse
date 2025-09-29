@@ -53,8 +53,8 @@ async def add_user(request: Request):
     conn.close()
     return JSONResponse(content={"success": True, "message": "User created."})
 
-@router.post("/update_permission/")
-async def update_permission(request: Request):
+@router.post("/update_category_permission/")
+async def update_category_permission(request: Request):
     data = await request.json()
     user_id = data.get("user_id")
     category_display_name = data.get("category")
@@ -90,6 +90,43 @@ async def update_permission(request: Request):
             conn.execute("DELETE FROM category_group WHERE group_id = ? AND category_id = ?", (gid, category_id))
         conn.commit()
 
+    conn.close()
+    return JSONResponse(content={"success": True})
+
+# API-Endpoint: Alle Gruppen dynamisch abrufen
+@router.get("/groups/")
+async def get_all_groups():
+    conn = get_db_connection()
+    groups = conn.execute("SELECT name FROM 'group' WHERE deleted=0").fetchall()
+    conn.close()
+    return [g["name"] for g in groups]
+
+# Gruppenrechte für User setzen/entfernen
+@router.post("/update_group_permission/")
+async def update_group_permission(request: Request):
+    data = await request.json()
+    user_id = data.get("user_id")
+    group_name = data.get("group")
+    allowed = data.get("allowed")  # True/False
+
+    conn = get_db_connection()
+    # Hole die group_id
+    group = conn.execute("SELECT id FROM 'group' WHERE name = ? AND deleted = 0", (group_name,)).fetchone()
+    if not group:
+        conn.close()
+        return JSONResponse(content={"success": False, "message": "Group not found"}, status_code=400)
+    group_id = group["id"]
+
+    if allowed:
+        # Füge User der Gruppe hinzu, falls nicht vorhanden
+        exists = conn.execute("SELECT 1 FROM user_group WHERE user_id = ? AND group_id = ? AND deleted = 0", (user_id, group_id)).fetchone()
+        if not exists:
+            conn.execute("INSERT INTO user_group (user_id, group_id) VALUES (?, ?)", (user_id, group_id))
+            conn.commit()
+    else:
+        # Entferne User aus der Gruppe
+        conn.execute("UPDATE user_group SET deleted = 1 WHERE user_id = ? AND group_id = ? AND deleted = 0", (user_id, group_id))
+        conn.commit()
     conn.close()
     return JSONResponse(content={"success": True})
 
